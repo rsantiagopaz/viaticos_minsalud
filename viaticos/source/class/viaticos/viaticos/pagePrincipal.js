@@ -8,7 +8,7 @@ qx.Class.define("viaticos.viaticos.pagePrincipal",
 		this._application = application;
 		
 /*
-		var rpc = this._rpc = new qx.io.remote.Rpc("services/")
+		var rpc = this._rpc = new componente.comp.io.ramon.rpc.Rpc("services/")
 		rpc.setTimeout(10000);
 		rpc.setServiceName("pediatras.Principal");
 		try {
@@ -48,7 +48,7 @@ qx.Class.define("viaticos.viaticos.pagePrincipal",
 			p.desde = txtDesde.getValue();
 			p.hasta = txtHasta.getValue();
 			
-			var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+			var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 			rpc.setTimeout(1000 * 60 * 1);
 			rpc.callAsync(function(resultado, error, id) {
 				tableModel.setDataAsMapArray(resultado, true);
@@ -81,7 +81,7 @@ qx.Class.define("viaticos.viaticos.pagePrincipal",
 			p.id_viatico = rowDataActual.id_viatico;
 			p.estado = estado;
 			p.json = json;
-			var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+			var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 			try {
 				var resultado = rpc.callSync("estado_viatico", p);
 			} catch (ex) {
@@ -366,7 +366,7 @@ qx.Class.define("viaticos.viaticos.pagePrincipal",
 		tblPaciente.toggleShowCellFocusIndicator();
 		//tblPaciente.toggleStatusBarVisible();
 
-		tblPaciente.addListener("cellDblclick", function(e){
+		tblPaciente.addListener("cellDbltap", function(e){
 
 		});
 		
@@ -403,7 +403,7 @@ qx.Class.define("viaticos.viaticos.pagePrincipal",
 				btnOperaciones.setEnabled(true);
 				rowDataActual = tableModel.getRowData(tblPaciente.getFocusedRow());
 				
-				var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+				var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 				try {
 					var resultado = rpc.callSync("leer_operaciones", {id_viatico: rowDataActual.id_viatico});
 				} catch (ex) {

@@ -139,7 +139,7 @@ qx.Class.define("viaticos.viaticos.windowMotivos",
 			if (enviar) {
 				var p = {};
 				p.cambios = cambios;
-				var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+				var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 				try {
 					var resultado = rpc.callSync("escribir_motivo", p);
 				} catch (ex) {
@@ -159,7 +159,7 @@ qx.Class.define("viaticos.viaticos.windowMotivos",
 		
 
 		
-		var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+		var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 		try {
 			var resultado = rpc.callSync("leer_motivos");
 		} catch (ex) {

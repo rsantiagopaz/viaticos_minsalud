@@ -52,6 +52,10 @@ $sql = "SELECT COUNT(id_viatico) AS cantidad, SUM(subtotal_viatico2) AS subtotal
 $rsViatico = $mysqli->query($sql);
 $rowViatico = $rsViatico->fetch_object();
 
+$tipo_descrip = "CASE tipo_viatico WHEN 'A' THEN 'Anticipo' WHEN 'R' THEN 'Reintegro' ELSE 'R.Mensual' END AS tipo_descrip";
+$sql = "SELECT viatico.*, " . $tipo_descrip . ", _personal.apenom FROM viatico INNER JOIN salud1._personal USING(id_personal) WHERE estado <> 'A' AND organismo_area_id_origen='" . $_REQUEST['organismo_area_id'] . "' AND (fecha_desde2 BETWEEN '" . $_REQUEST['desde'] . "' AND '" . $_REQUEST['hasta'] . "') ORDER BY fecha_tramite DESC";
+$rsViaticos = $mysqli->query($sql);
+
 $sql = "SELECT CONCAT(organismo_area, ' (', organismo, ')') AS label, organismo_area_id AS model FROM salud1._organismos_areas INNER JOIN salud1._organismos USING(organismo_id) WHERE organismo_area_id='" . $_REQUEST['organismo_area_id'] . "'";
 $rsOrganismo = $mysqli->query($sql);
 $rowOrganismo = $rsOrganismo->fetch_object();
@@ -69,7 +73,23 @@ $rowOrganismo = $rsOrganismo->fetch_object();
 	<tr><td><big>Datos</big></td></tr>
 	<tr><td colspan="6">Dependencia: <?php echo $rowOrganismo->label ?></td></tr>
 	<tr><td>&nbsp;</td></tr>
-	<tr><td>Cantidad viaticos: <?php echo $rowViatico->cantidad ?></td><td align="right">TOTAL: <?php echo "$ " . number_format((float) $rowViatico->subtotal_viatico2 + (float) $rowViatico->pasajes2 + (float) $rowViatico->combustible2 + (float) $rowViatico->subtotal_alojam2 + (float) $rowViatico->otros_gastos2, 2) ?></td></tr>
+	<tr><td>Cantidad viaticos: <?php echo $rowViatico->cantidad ?></td><td align="right">TOTAL: <?php echo "$ " . number_format((float) $rowViatico->subtotal_viatico2 + (float) $rowViatico->pasajes2 + (float) $rowViatico->combustible2 + (float) $rowViatico->subtotal_alojam2 + (float) $rowViatico->otros_gastos2, 2, ",", ".") ?></td></tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr><td colspan="6">
+	<table border="2" cellpadding="4" align="center" rules="all" frame="box" width="100%">
+	<tr><th>Asunto</th><th>F.trámite</th><th>Apellido nombre</th><th>Tipo</th><th>Total</th></tr>
+	<?php
+	while ($rowViaticos = $rsViaticos->fetch_object()) {
+		$total = (float) $rowViaticos->subtotal_viatico2 + (float) $rowViaticos->pasajes2 + (float) $rowViaticos->combustible2 + (float) $rowViaticos->subtotal_alojam2 + (float) $rowViaticos->otros_gastos2;
+		$total = number_format($total, 2, ",", ".");
+		?>
+		<tr><td><?php echo $rowViaticos->documentacion_id ?></td><td><?php echo substr($rowViaticos->fecha_tramite, 0, 10) ?></td><td><?php echo $rowViaticos->apenom ?></td><td><?php echo $rowViaticos->tipo_descrip ?></td><td align="right"><?php echo $total ?></td></tr>
+		<?php
+	}
+	?>
+	</table>
+	</td></tr>
 	</table>
 	</body>
 	</html>

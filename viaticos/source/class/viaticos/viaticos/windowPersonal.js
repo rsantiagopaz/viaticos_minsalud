@@ -47,7 +47,7 @@ qx.Class.define("viaticos.viaticos.windowPersonal",
 		if (txtBuscar.getValue().trim()!="") {
 			tbl.setFocusedCell();
 			var p = {descrip: txtBuscar.getValue()};
-			var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+			var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 			try {
 				var resultado = rpc.callSync("leer_personal", p);
 			} catch (ex) {
@@ -136,7 +136,7 @@ qx.Class.define("viaticos.viaticos.windowPersonal",
 			var rowData = tableModel.getRowData(focusedRow);
 			var rowDataAsMap = tableModel.getRowDataAsMap(focusedRow);
 			var p = {id_personal: rowData.id_personal, codigo_002: rowDataAsMap.codigo_002, funcionario: rowDataAsMap.funcionario, eximir_tope_viatico: rowDataAsMap.eximir_tope_viatico};
-			var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+			var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 			try {
 				var resultado = rpc.callSync("escribir_personal", p);
 			} catch (ex) {

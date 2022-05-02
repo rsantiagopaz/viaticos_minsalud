@@ -93,7 +93,7 @@ qx.Class.define("viaticos.viaticos.windowViatMen",
 	
 	
 	var leer_titulares = function(p) {
-		var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+		var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 		rpc.callAsync(function(resultado, error, id){
 			lstLista.setModel(qx.data.marshal.Json.createModel(resultado));
 		}, "leer_titulares", p);
@@ -116,7 +116,7 @@ qx.Class.define("viaticos.viaticos.windowViatMen",
 	txtDummy.setVisibility("hidden");
 	form.add(txtDummy, "", null, "dummy", null, {enabled: false, grupo: 1, item: {row: 1, column: 1, colSpan: 13}});
 	/*
-	var cboOrganismoArea = new componente.comp.ui.ramon.combobox.ComboBoxAuto("services/", "viaticos.Viaticos", "autocompletarOrganismoArea");
+	var cboOrganismoArea = new componente.comp.ui.ramon.combobox.ComboBoxAuto({url: "services/", serviceName: "viaticos.Viaticos", methodName: "autocompletarOrganismoArea"});
 	cboOrganismoArea.setRequired(true);
 	form.add(cboOrganismoArea, "Org/Area", function(value) {
 		if (lstOrganismoArea.isSelectionEmpty()) throw new qx.core.ValidationError("Validation Error", "Debe seleccionar Organismo/Area");
@@ -127,7 +127,7 @@ qx.Class.define("viaticos.viaticos.windowViatMen",
 	
 	
 	
-	var cboOrganismoAreaOrigen = new componente.comp.ui.ramon.combobox.ComboBoxAuto("services/", "viaticos.Viaticos", "autocompletarOrganismoArea");
+	var cboOrganismoAreaOrigen = new componente.comp.ui.ramon.combobox.ComboBoxAuto({url: "services/", serviceName: "viaticos.Viaticos", methodName: "autocompletarOrganismoArea"});
 	cboOrganismoAreaOrigen.setRequired(true);
 	form.add(cboOrganismoAreaOrigen, "Org/Area origen", function(value) {
 		if (lstOrganismoAreaOrigen.isSelectionEmpty()) throw new qx.core.ValidationError("Validation Error", "Debe seleccionar Org/Area origen");
@@ -137,7 +137,7 @@ qx.Class.define("viaticos.viaticos.windowViatMen",
 	
 	
 	
-	var cboPersonal = new componente.comp.ui.ramon.combobox.ComboBoxAuto("services/", "viaticos.Viaticos", "autocompletarPersonal");
+	var cboPersonal = new componente.comp.ui.ramon.combobox.ComboBoxAuto({url: "services/", serviceName: "viaticos.Viaticos", methodName: "autocompletarPersonal"});
 	cboPersonal.setRequired(true);
 	form.add(cboPersonal, "Titular", function(value) {
 		if (lstPersonal.isSelectionEmpty()) throw new qx.core.ValidationError("Validation Error", "Debe seleccionar el titular");
@@ -163,7 +163,7 @@ qx.Class.define("viaticos.viaticos.windowViatMen",
 
 	
 	
-	var cboMotivo = new componente.comp.ui.ramon.combobox.ComboBoxAuto("services/", "viaticos.Viaticos", "autocompletarMotivo");
+	var cboMotivo = new componente.comp.ui.ramon.combobox.ComboBoxAuto({url: "services/", serviceName: "viaticos.Viaticos", methodName: "autocompletarMotivo"});
 	cboMotivo.setRequired(true);
 	form.add(cboMotivo, "Motivo", function(value) {
 		if (lstMotivo.isSelectionEmpty()) throw new qx.core.ValidationError("Validation Error", "Debe seleccionar un motivo");
@@ -345,7 +345,7 @@ qx.Class.define("viaticos.viaticos.windowViatMen",
 	
 	
 
-	var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+	var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 	try {
 		var resultado = rpc.callSync("leer_cta_cte");
 	} catch (ex) {
@@ -363,7 +363,7 @@ qx.Class.define("viaticos.viaticos.windowViatMen",
 	
 	
 /*	
-	var cboCtaCte = new componente.comp.ui.ramon.combobox.ComboBoxAuto("services/", "viaticos.Viaticos", "autocompletarCtaCte");
+	var cboCtaCte = new componente.comp.ui.ramon.combobox.ComboBoxAuto({url: "services/", serviceName: "viaticos.Viaticos", methodName: "autocompletarCtaCte"});
 	cboCtaCte.setRequired(true);
 	options = {enabled: tipo_viatico=="R" || (tipo_viatico=="A" && estado=="L"), grupo: 1, item: {row: 13, column: 13, colSpan: 10}};
 	form.add(cboCtaCte, "Cta.Cte.", function(value) {
@@ -453,7 +453,7 @@ qx.Class.define("viaticos.viaticos.windowViatMen",
 	groupbox.setLayout(new qx.ui.layout.Canvas())
 	groupbox.setWidth(330);
 	groupbox.setHeight(174);
-	var cboLocalidadSel = new componente.comp.ui.ramon.combobox.ComboBoxAuto("services/", "viaticos.Viaticos", "autocompletarLocalidad");
+	var cboLocalidadSel = new componente.comp.ui.ramon.combobox.ComboBoxAuto({url: "services/", serviceName: "viaticos.Viaticos", methodName: "autocompletarLocalidad"});
 	var lstLocalidadSel = cboLocalidadSel.getChildControl("list");
 	var btnAgregarLocalidad = new qx.ui.form.Button("Agregar");
 	btnAgregarLocalidad.setEnabled(estado!="L");
@@ -525,7 +525,7 @@ qx.Class.define("viaticos.viaticos.windowViatMen",
 			model.fecha_desde2 = new Date(txtAno.getValue(), slbMes.getSelection()[0].getModel() - 1, 1);
 			var p = model;
 			
-			var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos_rm");
+			var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos_rm");
 			rpc.callAsync(function(resultado, error, id){
 				strTopeMensual = "";
 				bool = true;
@@ -607,7 +607,7 @@ qx.Class.define("viaticos.viaticos.windowViatMen",
 					p.localidad = localidad;
 					
 					
-					var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos_rm");
+					var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos_rm");
 					try {
 						var resultado = rpc.callSync("alta_modifica_viatico", p);
 					} catch (ex) {
@@ -707,7 +707,7 @@ qx.Class.define("viaticos.viaticos.windowViatMen",
 		json = {operaciones: [{fecha: aux, organismo_area: appMain.rowOrganismo_area.label, usuario: appMain._SYSusuario, operacion: "Emisión"}]};
 		json.diario = {};
 		
-		var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+		var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 		try {
 			var resultado = rpc.callSync("leer_paramet");
 		} catch (ex) {
@@ -742,7 +742,7 @@ qx.Class.define("viaticos.viaticos.windowViatMen",
 		preparar_campos();
 	} else {
 		var p = {};
-		var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos_rm");
+		var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos_rm");
 		try {
 			var resultado = rpc.callSync("leer_viatico", id_viatico);
 		} catch (ex) {

@@ -98,7 +98,7 @@ qx.Class.define("viaticos.viaticos.windowParamet",
 	var btnAceptar = new qx.ui.form.Button("Aceptar");
 	btnAceptar.addListener("execute", function(e){
 		var model = qx.util.Serializer.toNativeObject(modelForm);
-		var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+		var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 		try {
 			var resultado = rpc.callSync("escribir_paramet", model);
 		} catch (ex) {
@@ -117,7 +117,7 @@ qx.Class.define("viaticos.viaticos.windowParamet",
 	this.add(btnCancelar, {left: 230, bottom: 0});
 	
 
-	var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+	var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 	try {
 		var resultado = rpc.callSync("leer_paramet");
 	} catch (ex) {

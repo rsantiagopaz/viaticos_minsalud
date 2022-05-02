@@ -46,13 +46,13 @@ rb3.addListener("changeValue", function(e){
 	
 	this.add(rb1, {left: 0, top: 10});
 	
-	var cboPersonal = new componente.comp.ui.ramon.combobox.ComboBoxAuto("services/", "viaticos.Viaticos", "autocompletarPersonal");
+	var cboPersonal = new componente.comp.ui.ramon.combobox.ComboBoxAuto({url: "services/", serviceName: "viaticos.Viaticos", methodName: "autocompletarPersonal"});
 	var lstPersonal = cboPersonal.getChildControl("list");
 	this.add(cboPersonal, {left: 130, top: 10, right: 0});
 	
 	this.add(rb2, {left: 0, top: 50});
 	
-	var cboOrganismoAreaOrigen = new componente.comp.ui.ramon.combobox.ComboBoxAuto("services/", "viaticos.Viaticos", "autocompletarOrganismoArea");
+	var cboOrganismoAreaOrigen = new componente.comp.ui.ramon.combobox.ComboBoxAuto({url: "services/", serviceName: "viaticos.Viaticos", methodName: "autocompletarOrganismoArea"});
 	var lstOrganismoAreaOrigen = cboOrganismoAreaOrigen.getChildControl("list");
 	this.add(cboOrganismoAreaOrigen, {left: 130, top: 50, right: 0});
 	
@@ -111,6 +111,7 @@ rb3.addListener("changeValue", function(e){
 			if (rb1.getValue()) {
 				window.open("services/class/viaticos/Impresion.php?rutina=imprimir_historial_empleado&id_personal=" + lstPersonal.getModelSelection().getItem(0) + "&desde=" + desde + "&hasta=" + hasta);
 			} else if (rb2.getValue()) {
+				window.open("services/class/viaticos/xls.php?rutina=imprimir_total_dependencia&organismo_area_id=" + lstOrganismoAreaOrigen.getModelSelection().getItem(0) + "&desde=" + desde + "&hasta=" + hasta);
 				window.open("services/class/viaticos/Impresion.php?rutina=imprimir_total_dependencia&organismo_area_id=" + lstOrganismoAreaOrigen.getModelSelection().getItem(0) + "&desde=" + desde + "&hasta=" + hasta);
 			} else {
 				window.open("services/class/viaticos/Impresion.php?rutina=imprimir_total_motivos&desde=" + desde + "&hasta=" + hasta);

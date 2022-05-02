@@ -135,7 +135,7 @@ qx.Class.define("viaticos.viaticos.windowCtaCte",
 				var p = {};
 				p.cambios = cambios;
 
-				var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+				var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 				try {
 					var resultado = rpc.callSync("escribir_cta_cte", p);
 				} catch (ex) {
@@ -166,7 +166,7 @@ qx.Class.define("viaticos.viaticos.windowCtaCte",
 		
 		
 
-		var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+		var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 		try {
 			var resultado = rpc.callSync("leer_cta_cte");
 		} catch (ex) {

@@ -55,6 +55,7 @@ qx.Class.define("viaticos.Application",
 
 
       
+      
       this.getRoot().set({
 			blockerColor: '#bfbfbf',
 			blockerOpacity: 0.6
@@ -62,7 +63,7 @@ qx.Class.define("viaticos.Application",
 		
 		var doc = this.getRoot();
 		
-		var rpc = new qx.io.remote.Rpc();
+		var rpc = new componente.comp.io.ramon.rpc.Rpc();
 		rpc.setTimeout(10000);
 		rpc.setUrl("services/");
 		rpc.setServiceName("viaticos.turnos.login");
@@ -172,7 +173,7 @@ qx.Class.define("viaticos.Application",
 
 	var btnCerrar = new qx.ui.menu.Button("Cerrar");
 	btnCerrar.addListener("execute", function(e){
-		var rpc = new qx.io.remote.Rpc();
+		var rpc = new componente.comp.io.ramon.rpc.Rpc();
 		rpc.setTimeout(10000);
 		rpc.setUrl("services/");
 		rpc.setServiceName("viaticos.turnos.login");
@@ -277,7 +278,7 @@ qx.Class.define("viaticos.Application",
 			
 			btnIngresar.addListener("execute", function (e)
 			{
-				var rpc = new qx.io.remote.Rpc();
+				var rpc = new componente.comp.io.ramon.rpc.Rpc();
 				rpc.setTimeout(10000);
 				rpc.setUrl("services/");
 				rpc.setServiceName("viaticos.turnos.login");

@@ -39,7 +39,7 @@ qx.Class.define("viaticos.viaticos.windowRendicion",
 	
 
 	var p = {};
-	var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+	var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 	try {
 		var resultado = rpc.callSync("leer_viatico", id_viatico);
 	} catch (ex) {
@@ -287,7 +287,7 @@ qx.Class.define("viaticos.viaticos.windowRendicion",
 				
 				//alert(qx.lang.Json.stringify(p, null, 2));
 				
-				var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+				var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 				rpc.callAsync(function(resultado, error, id){
 					//alert(qx.lang.Json.stringify(error, null, 2));
 					//alert(qx.lang.Json.stringify(resultado, null, 2));
@@ -397,7 +397,7 @@ qx.Class.define("viaticos.viaticos.windowRendicion",
 				p.validar_tope = validar_tope;
 				p.localidad = [];
 				
-				var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+				var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 				rpc.callAsync(function(resultado, error, id){
 					strTopeMensual = "";
 					bool = true;
@@ -483,7 +483,7 @@ qx.Class.define("viaticos.viaticos.windowRendicion",
 					
 					//alert(qx.util.Json.stringify(p, true));
 					
-					var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+					var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 					try {
 						var resultado = rpc.callSync("alta_modifica_viatico", p);
 					} catch (ex) {
@@ -530,7 +530,7 @@ qx.Class.define("viaticos.viaticos.windowRendicion",
 			var p = {};
 			p.model = model;
 			
-			var rpc = new qx.io.remote.Rpc("services/", "viaticos.Viaticos");
+			var rpc = new componente.comp.io.ramon.rpc.Rpc("services/", "viaticos.Viaticos");
 			try {
 				var resultado = rpc.callSync("rendir_viatico", p);
 			} catch (ex) {

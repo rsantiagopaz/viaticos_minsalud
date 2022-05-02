@@ -3,7 +3,7 @@
 $servidor = "localhost";
 $usuario = "root";
 $password = "";
-$base = "viaticos";
+$base = "viaticos_minsalud";
 
 
 
